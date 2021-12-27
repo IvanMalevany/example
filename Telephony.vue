@@ -162,11 +162,6 @@ export default {
     beforeDestroy(){
         document.removeEventListener('click', this.contextMenuClose);
     },
-    watch: {
-        'search'(n, o){
-            console.log(n, o);
-        }
-    },
     computed: {
         ...mapGetters({
             employeeList: 'employee/list',
@@ -237,14 +232,6 @@ export default {
                 return sum + current.history.length;
             }, 0);
         }
-    },
-    mounted() {
-        this.$root.$on('changePeriodClients', ({from, to}) => {
-            console.log('changePeriod telephony', from, to);
-            from = `${from.getDate()}-${from.getMonth() + 1}-${from.getFullYear()}`;
-            to = `${to.getDate()}-${to.getMonth() + 1}-${to.getFullYear()}`;
-            this.loadTelephony({from, to});
-        })
     },
     methods: {
         ...mapMutations({
